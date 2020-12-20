@@ -2,6 +2,7 @@ import BaseComponent from './BaseComponent';
 import ListInCategory from './ListInCategory';
 import state from '../state';
 import { categoryNotEmpty, totalAmount } from '../state/utils';
+import generatePdf from '../generatePdf';
 
 export default class ShoppingList extends BaseComponent {
   constructor(templateId, parentId) {
@@ -9,6 +10,7 @@ export default class ShoppingList extends BaseComponent {
     this.listContainer = this.element.querySelector('#listContainer');
     this.totalPcs = this.element.querySelector('#totalPcs');
     this.totalKgs = this.element.querySelector('#totalKgs');
+    this.exportPdfBtn = this.element.querySelector('#exportPdfBtn');
     this.populateList = this.populateList.bind(this);
     this.populateTotals = this.populateTotals.bind(this);
     this.init();
@@ -17,6 +19,7 @@ export default class ShoppingList extends BaseComponent {
   init() {
     this.populateList();
     this.populateTotals();
+    this.exportPdfBtn.addEventListener('click', generatePdf);
   }
 
   populateList() {

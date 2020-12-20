@@ -7,6 +7,7 @@ function app() {
   const shoppingList = new ShoppingList('shoppingList', 'app');
   state.categories.addListener(addProductForm.renderCategoriesList);
   state.products.addListener(shoppingList.populateList);
+  state.products.addListener(shoppingList.populateTotals);
 }
 
 export default app;

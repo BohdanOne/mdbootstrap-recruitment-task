@@ -1,18 +1,22 @@
 import BaseComponent from './BaseComponent';
 import ListInCategory from './ListInCategory';
 import state from '../state';
-import { categoryNotEmpty } from '../state/utils';
+import { categoryNotEmpty, totalAmount } from '../state/utils';
 
 export default class ShoppingList extends BaseComponent {
   constructor(templateId, parentId) {
     super(templateId, parentId);
     this.listContainer = this.element.querySelector('#listContainer');
+    this.totalPcs = this.element.querySelector('#totalPcs');
+    this.totalKgs = this.element.querySelector('#totalKgs');
     this.populateList = this.populateList.bind(this);
+    this.populateTotals = this.populateTotals.bind(this);
     this.init();
   }
 
   init() {
     this.populateList();
+    this.populateTotals();
   }
 
   populateList() {
@@ -24,5 +28,10 @@ export default class ShoppingList extends BaseComponent {
         (category) =>
           new ListInCategory('listInCategory', this.listContainer.id, `listOf${category}`, category)
       );
+  }
+
+  populateTotals() {
+    this.totalPcs.innerText = totalAmount('pcs');
+    this.totalKgs.innerText = totalAmount('kg').toFixed(1);
   }
 }

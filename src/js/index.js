@@ -1,4 +1,3 @@
-import AddProductForm from './components/AddProductForm';
+import app from './app';
 
-const addProductForm = new AddProductForm('addProductForm', 'app');
-addProductForm.attachToParent();
+app();

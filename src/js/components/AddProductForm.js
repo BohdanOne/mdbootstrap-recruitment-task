@@ -10,6 +10,7 @@ export default class AddProductForm extends BaseComponent {
     this.quantityInput = this.element.querySelector('#quantity');
     this.kgRadioInput = this.element.querySelector('#kg');
     this.pcsRadioInput = this.element.querySelector('#pcs');
+    this.addProduct = this.addProduct.bind(this);
     this.init();
   }
 
@@ -47,7 +48,7 @@ export default class AddProductForm extends BaseComponent {
       id: products.length + 1,
       name: this.form.name.value,
       unit: this.form.unit.value,
-      quantity: this.form.quantity.value,
+      quantity: this.form.quantity.value.toNumber(),
       category: this.form.category.value,
     };
     products.push(newProduct);

@@ -45,6 +45,33 @@
         </form>
       </div>
     </template>
+
+    <template id="shoppingList">
+      <div>
+        <h2>Your Products</h2>
+        <div id="listContainer">
+        </div>
+      </div>
+    </template>
+
+    <template id="listInCategory">
+      <div>
+        <h3 id="categoryName"></h3>
+        <ul id="products"></ul>
+      </div>
+    </template>
+
+    <template id="product">
+      <li>
+        <span id="name"></span>
+        <button id="decreaseQty">-</button>
+        <span id="qty"></span>
+        <button id="increaseQty">+</button>
+        <span id="unit"></span>
+        <button id="removeBtn">remove</button>
+      </li>
+    </template>
+
   </body>
   <script type="text/javascript" src="js/index.min.js"></script>
 </html>

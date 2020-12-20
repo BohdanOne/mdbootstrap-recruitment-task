@@ -1,3 +1,3 @@
-const categories = ['fruits', 'inne'];
+const categories = ['fruits', 'sweets'];
 
 export default categories;

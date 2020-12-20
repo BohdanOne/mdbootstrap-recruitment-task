@@ -1,13 +1,15 @@
 import BaseComponent from './BaseComponent';
 import Product from './Product';
-import products from '../state/products';
+import state from '../state';
 
 export default class ListInCategory extends BaseComponent {
   constructor(templateId, parentId, newElementId, category) {
     super(templateId, parentId, newElementId);
     this.category = category;
     this.heading = this.element.querySelector('#categoryName');
-    this.productsList = this.element.querySelector('#products');
+    this.productsList = this.element.querySelector('ul');
+    this.productsList.id = `${category}Products`;
+    this.populateList = this.populateList.bind(this);
     this.init();
   }
 
@@ -21,11 +23,12 @@ export default class ListInCategory extends BaseComponent {
   }
 
   populateList() {
-    this.productsList.innerHTML = '';
-    products
+    this.productsList.innerHTML = null;
+    state.products
+      .items()
       .filter((product) => product.category === this.category)
       .forEach(
-        (product) => new Product('product', this.element.id, `product${product.id}`, product)
+        (product) => new Product('product', this.productsList.id, `product${product.id}`, product)
       );
   }
 }

@@ -1,11 +1,13 @@
 import BaseComponent from './BaseComponent';
 import ListInCategory from './ListInCategory';
-import categories from '../state/categories';
+import state from '../state';
+import { categoryNotEmpty } from '../state/utils';
 
 export default class ShoppingList extends BaseComponent {
   constructor(templateId, parentId) {
     super(templateId, parentId);
     this.listContainer = this.element.querySelector('#listContainer');
+    this.populateList = this.populateList.bind(this);
     this.init();
   }
 
@@ -14,10 +16,13 @@ export default class ShoppingList extends BaseComponent {
   }
 
   populateList() {
-    this.listContainer.innerHTML = '';
-    categories.forEach(
-      (category) =>
-        new ListInCategory('listInCategory', this.listContainer.id, `listOf${category}`, category)
-    );
+    this.listContainer.innerHTML = null;
+    state.categories
+      .items()
+      .filter((category) => categoryNotEmpty(category))
+      .forEach(
+        (category) =>
+          new ListInCategory('listInCategory', this.listContainer.id, `listOf${category}`, category)
+      );
   }
 }

@@ -1,6 +1,5 @@
 import BaseComponent from './BaseComponent';
-import categories from '../state/categories';
-import products from '../state/products';
+import state from '../state';
 
 export default class AddProductForm extends BaseComponent {
   constructor(templateId, parentId) {
@@ -10,6 +9,7 @@ export default class AddProductForm extends BaseComponent {
     this.quantityInput = this.element.querySelector('#quantity');
     this.kgRadioInput = this.element.querySelector('#kg');
     this.pcsRadioInput = this.element.querySelector('#pcs');
+    this.renderCategoriesList = this.renderCategoriesList.bind(this);
     this.addProduct = this.addProduct.bind(this);
     this.init();
   }
@@ -22,7 +22,7 @@ export default class AddProductForm extends BaseComponent {
 
   renderCategoriesList() {
     this.categoriesList.innerHTML = '';
-    categories.forEach((category) => {
+    state.categories.items().forEach((category) => {
       const option = document.createElement('option');
       option.value = category;
       this.categoriesList.appendChild(option);
@@ -44,22 +44,24 @@ export default class AddProductForm extends BaseComponent {
 
   addProduct(event) {
     event.preventDefault();
+    this.addCategory(this.form.category.value);
+    const products = state.products.items();
     const newProduct = {
       id: products.length + 1,
       name: this.form.name.value,
       unit: this.form.unit.value,
-      quantity: this.form.quantity.value.toNumber(),
+      quantity: Number(this.form.quantity.value),
       category: this.form.category.value,
     };
-    products.push(newProduct);
-    this.addCategory(this.form.category.value);
+    state.products.addItem(newProduct);
     this.form.reset();
   }
 
   addCategory(category) {
+    const categories = state.categories.items();
     if (categories.indexOf(category) !== -1) {
       return;
     }
-    categories.push(category);
+    state.categories.addItem(category);
   }
 }

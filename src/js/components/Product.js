@@ -17,11 +17,14 @@ export default class Product extends BaseComponent {
     this.removeProduct = this.removeProduct.bind(this);
     this.decreaseQty = this.decreaseQty.bind(this);
     this.increaseQty = this.increaseQty.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
     this.init();
   }
 
   init() {
     this.populateListItem();
+    // this.element.addEventListener('dragend', () => console.log('drop'));
+    this.element.addEventListener('dragstart', this.handleDrag);
     this.editBtn.addEventListener('click', this.editName, { once: true });
     this.removeBtn.addEventListener('click', this.removeProduct);
     this.decreaseBtn.addEventListener('click', this.decreaseQty);
@@ -62,5 +65,11 @@ export default class Product extends BaseComponent {
 
   getStep() {
     return this.product.unit === 'pcs' ? 1 : 0.1;
+  }
+
+  handleDrag(event) {
+    event.dataTransfer.setData('text/plain', JSON.stringify(this.product));
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.dropEffect = 'move';
   }
 }

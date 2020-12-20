@@ -10,10 +10,41 @@
   </head>
 
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <header>
       <h1>mdb shopping list</h1>
     </header>
-    <main></main>
+    <main id="app"></main>
+
+    <!-- TEMPLATES -->
+
+    <template id="addProductForm">
+      <div>
+        <h2>Add product</h2>
+        <form>
+          <div>
+            <label for="name">Product</label>
+            <input type="text" name="name" id="name" autocomplete="off" required />
+          </div>
+          <div>
+            <label for="pcs">pcs</label>
+            <input type="radio" name="unit" id="pcs" value="pcs" checked required />
+            <label for="kg">kg</label>
+            <input type="radio" name="unit" id="kg" value="kg" required />
+          </div>
+          <div>
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" id="quantity" min="0" required />
+          </div>
+          <div>
+            <label for="category">Category</label>
+            <input name="category" id="category" list="categories" required />
+            <datalist id="categories"> </datalist>
+          </div>
+          <button type="submit">ADD PRODUCT</button>
+        </form>
+      </div>
+    </template>
   </body>
   <script type="text/javascript" src="js/index.min.js"></script>
 </html>

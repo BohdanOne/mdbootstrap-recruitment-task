@@ -1,6 +1,6 @@
 {
-  "name": "mdb-webpack-starter",
-  "version": "2.0.0",
+  "name": "mdb-shopping-list",
+  "version": "1.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack/webpack.config.dev.js --open",
     "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js --colors",
@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mdbootstrap/mdb-webpack-starter"
+    "url": "https://github.com/BohdanOne/mdbootstrap-recrutiment-task"
   },
   "keywords": [
     "material design",
     "bootstrap",
     "webpack"
   ],
-  "author": "M.Smolenski <m.smolenski@mdbootstrap.com>",
+  "author": "Bohdan Imiela",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -78,7 +78,5 @@
     "webpack-fix-style-only-entries": "^0.5.1",
     "webpack-merge": "^4.2.2"
   },
-  "dependencies": {
-    "mdb-ui-kit": "3.0.0"
-  }
+  "dependencies": {}
 }

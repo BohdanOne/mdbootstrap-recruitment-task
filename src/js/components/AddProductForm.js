@@ -47,7 +47,7 @@ export default class AddProductForm extends BaseComponent {
     this.addCategory(this.form.category.value);
     const products = state.products.items();
     const newProduct = {
-      id: products.length + 1,
+      id: products.length + 1 + Date.now(),
       name: this.form.name.value,
       unit: this.form.unit.value,
       quantity: Number(this.form.quantity.value),

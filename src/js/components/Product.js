@@ -1,5 +1,6 @@
 import BaseComponent from './BaseComponent';
 import state from '../state';
+import { saveButton } from './saveButton';
 
 export default class Product extends BaseComponent {
   constructor(templateId, parentId, newElementId, product) {
@@ -35,6 +36,7 @@ export default class Product extends BaseComponent {
 
   setupListeners() {
     this.element.addEventListener('dragstart', this.handleDrag);
+    this.nameSpan.addEventListener('click', this.editName, { once: true });
     this.editBtn.addEventListener('click', this.editName, { once: true });
     this.removeBtn.addEventListener('click', this.removeProduct);
     this.decreaseBtn.addEventListener('click', this.decreaseQty);
@@ -49,9 +51,9 @@ export default class Product extends BaseComponent {
 
   editName() {
     const input = document.createElement('input');
-    input.placeholder = this.product.name;
+    input.value = this.product.name;
     this.element.replaceChild(input, this.nameSpan);
-    this.editBtn.innerText = 'save';
+    this.editBtn.innerHTML = saveButton;
     const save = () => {
       state.products.updateItem(this.product, 'name', input.value);
     };

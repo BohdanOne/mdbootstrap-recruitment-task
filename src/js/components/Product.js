@@ -13,6 +13,7 @@ export default class Product extends BaseComponent {
     this.decreaseBtn = this.element.querySelector('#decreaseQty');
     this.increaseBtn = this.element.querySelector('#increaseQty');
     this.editNameInput = this.element.querySelector('input');
+    this.setupListeners = this.setupListeners.bind(this);
     this.editName = this.editName.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
     this.decreaseQty = this.decreaseQty.bind(this);
@@ -23,11 +24,7 @@ export default class Product extends BaseComponent {
 
   init() {
     this.populateListItem();
-    this.element.addEventListener('dragstart', this.handleDrag);
-    this.editBtn.addEventListener('click', this.editName, { once: true });
-    this.removeBtn.addEventListener('click', this.removeProduct);
-    this.decreaseBtn.addEventListener('click', this.decreaseQty);
-    this.increaseBtn.addEventListener('click', this.increaseQty);
+    this.setupListeners();
   }
 
   populateListItem() {
@@ -36,15 +33,29 @@ export default class Product extends BaseComponent {
     this.unitSpan.innerText = this.product.unit;
   }
 
+  setupListeners() {
+    this.element.addEventListener('dragstart', this.handleDrag);
+    this.editBtn.addEventListener('click', this.editName, { once: true });
+    this.removeBtn.addEventListener('click', this.removeProduct);
+    this.decreaseBtn.addEventListener('click', this.decreaseQty);
+    this.increaseBtn.addEventListener('click', this.increaseQty);
+  }
+
+  handleDrag(event) {
+    event.dataTransfer.setData('text/plain', JSON.stringify(this.product));
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.dropEffect = 'move';
+  }
+
   editName() {
+    const input = document.createElement('input');
+    input.placeholder = this.product.name;
+    this.element.replaceChild(input, this.nameSpan);
+    this.editBtn.innerText = 'save';
     const save = () => {
       state.products.updateItem(this.product, 'name', input.value);
     };
-    const input = document.createElement('input');
-    input.placeholder = this.product.name;
     input.addEventListener('change', save);
-    this.element.replaceChild(input, this.nameSpan);
-    this.editBtn.innerText = 'save';
     this.editBtn.addEventListener('click', save);
   }
 
@@ -64,11 +75,5 @@ export default class Product extends BaseComponent {
 
   getStep() {
     return this.product.unit === 'pcs' ? 1 : 0.1;
-  }
-
-  handleDrag(event) {
-    event.dataTransfer.setData('text/plain', JSON.stringify(this.product));
-    event.dataTransfer.effectAllowed = 'move';
-    event.dataTransfer.dropEffect = 'move';
   }
 }

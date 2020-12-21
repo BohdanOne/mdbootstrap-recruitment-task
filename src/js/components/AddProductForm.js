@@ -21,7 +21,7 @@ export default class AddProductForm extends BaseComponent {
   }
 
   renderCategoriesList() {
-    this.categoriesList.innerHTML = '';
+    this.categoriesList.innerHTML = null;
     state.categories.items().forEach((category) => {
       const option = document.createElement('option');
       option.value = category;

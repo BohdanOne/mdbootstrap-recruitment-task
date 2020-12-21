@@ -10,24 +10,16 @@ export default class ListInCategory extends BaseComponent {
     this.productsList = this.element.querySelector('ul');
     this.productsList.id = `${category}Products`;
     this.populateList = this.populateList.bind(this);
-    this.init = this.init.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
+    this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
     this.init();
   }
 
   init() {
     this.populateHeading();
     this.populateList();
-    this.element.addEventListener('dragover', (event) => {
-      this.element.style.color = '#f00';
-      event.preventDefault();
-    });
-    this.element.addEventListener('dragleave', () => {
-      this.element.style.color = '#000';
-    });
-    this.element.addEventListener('drop', (event) => {
-      const product = event.dataTransfer.getData('text/plain');
-      state.products.updateItem(JSON.parse(product), 'category', this.category);
-    });
+    this.setupDragListeners();
   }
 
   populateHeading() {
@@ -42,5 +34,25 @@ export default class ListInCategory extends BaseComponent {
       .forEach(
         (product) => new Product('product', this.productsList.id, `product${product.id}`, product)
       );
+  }
+
+  setupDragListeners() {
+    this.element.addEventListener('dragover', this.handleDragOver);
+    this.element.addEventListener('dragleave', this.handleDragLeave);
+    this.element.addEventListener('drop', this.handleDrop);
+  }
+
+  handleDragOver(event) {
+    this.element.classList.add('dropzone');
+    event.preventDefault();
+  }
+
+  handleDragLeave() {
+    this.element.classList.remove('dropzone');
+  }
+
+  handleDrop(event) {
+    const product = event.dataTransfer.getData('text/plain');
+    state.products.updateItem(JSON.parse(product), 'category', this.category);
   }
 }

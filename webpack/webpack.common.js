@@ -1,5 +1,4 @@
 const Path = require('path');
-const Webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,9 +13,6 @@ module.exports = {
     filename: '[name].min.js',
   },
   plugins: [
-    new Webpack.ProvidePlugin({
-      'mdb': 'mdb',
-    }),
     new CopyWebpackPlugin([
       { from: Path.resolve(__dirname, '../src/index.html') },
       { from: Path.resolve(__dirname, '../src/img'), to: 'img' },
@@ -26,12 +22,6 @@ module.exports = {
       filename: '[name].min.css',
     }),
   ],
-  resolve: {
-    alias: {
-      '~': Path.resolve(__dirname, '../src'),
-      'mdb': Path.join(__dirname, '../node_modules/mdb-ui-kit'),
-    },
-  },
   module: {
     rules: [
       {

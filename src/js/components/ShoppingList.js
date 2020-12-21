@@ -2,7 +2,7 @@ import BaseComponent from './BaseComponent';
 import ListInCategory from './ListInCategory';
 import state from '../state';
 import { categoryNotEmpty, totalAmount } from '../state/utils';
-import generatePdf from '../generatePdf';
+import generatePdf from '../utils/generatePdf';
 
 export default class ShoppingList extends BaseComponent {
   constructor(templateId, parentId) {

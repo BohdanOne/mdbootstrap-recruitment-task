@@ -1,7 +1,7 @@
 import BaseComponent from './BaseComponent';
 import ListInCategory from './ListInCategory';
 import state from '../state';
-import { categoryNotEmpty, totalAmount } from '../state/utils';
+import { categoryNotEmpty, totalAmount } from '../state/stateHelpers';
 import generatePdf from '../utils/generatePdf';
 
 export default class ShoppingList extends BaseComponent {

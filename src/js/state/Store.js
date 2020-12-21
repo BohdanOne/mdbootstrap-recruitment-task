@@ -1,3 +1,6 @@
+import saveToStorage from './services/saveToStorage';
+import getFromStorage from './services/getFromStorage';
+
 export default class Store {
   constructor(storeName) {
     this.storeName = storeName;
@@ -16,11 +19,11 @@ export default class Store {
     if (inStorage) {
       this.store = [...inStorage];
     }
-    localStorage.setItem(this.storeName, JSON.stringify(this.store));
+    saveToStorage(this.storeName, this.store);
   }
 
   items() {
-    return JSON.parse(localStorage.getItem(this.storeName));
+    return getFromStorage(this.storeName);
   }
 
   addListener(listener) {
@@ -41,14 +44,14 @@ export default class Store {
   addItem(item) {
     const items = this.items();
     items.push(item);
-    localStorage.setItem(this.storeName, JSON.stringify(items));
+    saveToStorage(this.storeName, items);
     this.updateListeners();
   }
 
   removeItem(item) {
     const items = this.items();
     const filteredItems = items.filter((itemInStore) => itemInStore.id !== item.id);
-    localStorage.setItem(this.storeName, JSON.stringify(filteredItems));
+    saveToStorage(this.storeName, filteredItems);
     this.updateListeners();
   }
 
@@ -56,7 +59,7 @@ export default class Store {
     const items = this.items();
     const itemIndex = items.findIndex((itemInStore) => itemInStore.id === item.id);
     items[itemIndex][field] = newValue;
-    localStorage.setItem(this.storeName, JSON.stringify(items));
+    saveToStorage(this.storeName, items);
     this.updateListeners();
   }
 }

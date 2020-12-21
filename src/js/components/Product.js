@@ -23,7 +23,6 @@ export default class Product extends BaseComponent {
 
   init() {
     this.populateListItem();
-    // this.element.addEventListener('dragend', () => console.log('drop'));
     this.element.addEventListener('dragstart', this.handleDrag);
     this.editBtn.addEventListener('click', this.editName, { once: true });
     this.removeBtn.addEventListener('click', this.removeProduct);

@@ -2,7 +2,7 @@
 
 ### App prepared as a recruitment task for [MDBootstrap](https://mdbootstrap.com)
 
-## [LIVE DEMO](https://bohdanone.github.io/mdbootstrap-recrutiment-task)
+## [LIVE DEMO](https://bohdanone.github.io/mdbootstrap-recruitment-task)
 
 User can:
 

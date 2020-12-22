@@ -1,0 +1,39 @@
+.main-footer {
+  @include flex-center;
+  flex-direction: column;
+  padding: 1rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  background: $bg-gradient;
+  box-shadow: $shadow;
+}
+
+.main-footer__btn {
+  @include button-colors($col-main, $col-accent, $col-accent, $col-secondary);
+  flex-grow: 0;
+}
+
+.details {
+  color: $col-main;
+}
+
+.details__txt {
+  text-transform: none;
+  line-height: 1.5;
+  font-style: italic;
+  font-size: .8rem;
+  margin-top: 0.5rem;
+}
+
+.details__list-item {
+  list-style-type: circle;
+}
+
+.details__link {
+  text-decoration: none;
+  color: $col-secondary;
+  transition: color $trans;
+  &:hover {
+    color: $col-ternary
+  }
+}

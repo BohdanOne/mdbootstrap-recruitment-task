@@ -3,3 +3,18 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin button-colors($color, $bg, $color-hover, $bg-hover) {
+  color: $color;
+  background-color: $bg;
+  .icon {
+    fill: $color;
+  }
+  &:hover {
+    color: $color-hover;
+    background-color: $bg-hover;
+    .icon {
+      fill: $color-hover;
+    }
+  }
+}

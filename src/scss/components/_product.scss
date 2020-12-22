@@ -29,46 +29,15 @@
 }
 
 .product__btn--edit {
-  color: $col-main;
-  .icon {
-    fill: $col-main;
-  }
-  &:hover {
-    color: $col-accent;
-    background-color: $col-gray;
-    .icon {
-      fill: $col-accent;
-    }
-  }
+  @include button-colors($col-main, transparent, $col-accent, $col-gray);
 }
 
 .product__btn--save {
-  color: $col-secondary;
-  background-color: $col-accent;
-  .icon {
-    fill: $col-secondary;
-  }
-  &:hover {
-    color: $col-accent;
-    background-color: $col-secondary;
-    .icon {
-      fill: $col-accent;
-    }
-  }
+  @include button-colors($col-secondary, $col-accent, $col-accent, $col-secondary);
 }
 
 .product__btn--remove {
-  color: $col-ternary;
-  .icon {
-    fill: $col-ternary;
-  }
-  &:hover {
-    color: $col-accent;
-    background-color: $col-ternary;
-    .icon {
-      fill: $col-accent;
-    }
-  }
+  @include button-colors($col-ternary, transparent, $col-accent, $col-ternary);
 }
 
 .product__qty__btn {

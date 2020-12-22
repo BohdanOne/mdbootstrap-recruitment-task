@@ -22,16 +22,5 @@
 }
 
 .product-form__submit {
-  background-color: $col-accent;
-  color: $col-main;
-  .icon {
-    fill: $col-main;
-  }
-  &:hover {
-    background-color: $col-secondary;
-    color: $col-accent;
-    .icon {
-      fill: $col-accent;
-    }
-  }
+  @include button-colors($col-main, $col-accent, $col-accent, $col-secondary);
 }

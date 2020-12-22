@@ -16,6 +16,31 @@
       <img class="main-header__icon" src="img/list-icon.svg" alt="" />
     </header>
     <main class="main-app" id="app"></main>
+    <footer class="main-footer">
+      <button class="btn main-footer__btn" id="scrollToTopBtn">
+        <svg class="icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3C8.83203 3 3 8.83203 3 16C3 23.168 8.83203 29 16 29C23.168 29 29 23.168 29 16C29 8.83203 23.168 3 16 3ZM16 5C22.0859 5 27 9.91406 27 16C27 22.0859 22.0859 27 16 27C9.91406 27 5 22.0859 5 16C5 9.91406 9.91406 5 16 5ZM16 8.875L9.59375 15.2812L11 16.7188L15 12.7188V23H17V12.7188L21 16.7188L22.4062 15.2812L16 8.875Z" />
+          </svg>
+        go to top
+      </button>
+      <details class="details">
+        <summary>About this app</summary>
+        <p class="details__txt">Shopping List is an app prepared as a recruitment task for MDBootstrap.</p>
+        <ul class="details__txt">user can:
+          <li class="details__list-item">add products to the list</li>
+          <li class="details__list-item">each products has a name, quantity, quantity unit and category</li>
+          <li class="details__list-item">products list is divided into products categories</li>
+          <li class="details__list-item">user can edit name and quantity of product on the list</li>
+          <li class="details__list-item">user can drag&drop product to other category</li>
+          <li class="details__list-item">user can remove product from the list</li>
+          <li class="details__list-item">list is persistely stored in browser memory</li>
+          <li class="details__list-item">user can export list as a pdf file</li>
+        </ul>
+        <p class="details__txt">App created in Vanilla JavaScript and SCSS on top of MDB 5 Webpack Starter.</p>
+        <p class="details__txt">Author: <a class="details__link" href="http://bohdanone.github.io">Bohdan Imiela</a></p>
+      </details>
+
+    </footer>
 
     <!-- TEMPLATES -->
 
@@ -181,8 +206,8 @@
           <svg class="icon icon--small" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 4C14.4766 4 13.9414 4.18359 13.5625 4.5625C13.1836 4.94141 13 5.47656 13 6V7H7V9H8V25C8 26.6445 9.35547 28 11 28H23C24.6445 28 26 26.6445 26 25V9H27V7H21V6C21 5.47656 20.8164 4.94141 20.4375 4.5625C20.0586 4.18359 19.5234 4 19 4H15ZM15 6H19V7H15V6ZM10 9H24V25C24 25.5547 23.5547 26 23 26H11C10.4453 26 10 25.5547 10 25V9ZM12 12V23H14V12H12ZM16 12V23H18V12H16ZM20 12V23H22V12H20Z" />
             </svg>
-
-          remove</button>
+          remove
+        </button>
       </li>
     </template>
   </body>

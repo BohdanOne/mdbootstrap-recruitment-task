@@ -1,0 +1,14 @@
+.export-to-pdf {
+  background-color: $col-accent;
+  color: $col-main;
+  .icon {
+    fill: $col-main;
+  }
+  &:hover {
+    background-color: $col-gray;
+    color: $col-ternary;
+    .icon {
+      fill: $col-ternary;
+    }
+  }
+}

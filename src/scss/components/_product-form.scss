@@ -1,0 +1,37 @@
+.product-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-form__field {
+  @include flex-center;
+  flex-wrap: wrap;
+  margin: .5rem 1rem;
+}
+
+.product-form__label {
+  color: $col-main;
+  margin-right: .5rem;
+}
+
+.product-form__input {
+  margin-right: 0.5rem;
+  height: 2rem;
+  padding: 0 1rem;
+  border: 1px solid $col-gray;
+}
+
+.product-form__submit {
+  background-color: $col-accent;
+  color: $col-main;
+  .icon {
+    fill: $col-main;
+  }
+  &:hover {
+    background-color: $col-secondary;
+    color: $col-accent;
+    .icon {
+      fill: $col-accent;
+    }
+  }
+}

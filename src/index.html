@@ -4,74 +4,185 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>MDB Shopping List</title>
+    <title>Shopping List</title>
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/index.min.css" />
   </head>
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <header>
-      <h1>mdb shopping list</h1>
+    <header class="main-header">
+      <h1 class="main-header__title">Shopping List</h1>
+      <img class="main-header__icon" src="img/list-icon.svg" alt="" />
     </header>
-    <main id="app"></main>
+    <main class="main-app" id="app"></main>
 
     <!-- TEMPLATES -->
 
     <template id="addProductForm">
-      <div>
-        <h2>Add product</h2>
-        <form>
-          <div>
-            <label for="name">Product</label>
-            <input type="text" name="name" id="name" autocomplete="off" required />
+      <section class="section">
+        <h2 class="section__title">Add product</h2>
+        <form class="product-form">
+          <div class="product-form__field">
+            <label class="product-form__label" for="name">Product</label>
+            <input
+              class="product-form__input"
+              type="text"
+              name="name"
+              id="name"
+              autocomplete="off"
+              required
+            />
           </div>
-          <div>
-            <label for="pcs">pcs</label>
-            <input type="radio" name="unit" id="pcs" value="pcs" checked required />
-            <label for="kg">kg</label>
-            <input type="radio" name="unit" id="kg" value="kg" required />
+          <div class="product-form__field">
+            <label class="product-form__label" for="pcs">unit pcs</label>
+            <input
+              class="product-form__input"
+              type="radio"
+              name="unit"
+              id="pcs"
+              value="pcs"
+              checked
+              required
+            />
+            <label class="product-form__label" for="kg">unit kg</label>
+            <input
+              class="product-form__input"
+              type="radio"
+              name="unit"
+              id="kg"
+              value="kg"
+              required
+            />
           </div>
-          <div>
-            <label for="quantity">Quantity</label>
-            <input type="number" name="quantity" id="quantity" min="0" required />
+          <div class="product-form__field">
+            <label class="product-form__label" for="quantity">Quantity</label>
+            <input
+              class="product-form__input"
+              type="number"
+              name="quantity"
+              id="quantity"
+              min="0"
+              required
+            />
           </div>
-          <div>
-            <label for="category">Category</label>
-            <input name="category" id="category" list="categories" required />
+          <div class="product-form__field">
+            <label class="product-form__label" for="category">Category</label>
+            <input
+              class="product-form__input"
+              name="category"
+              id="category"
+              list="categories"
+              required
+            />
             <datalist id="categories"> </datalist>
           </div>
-          <button type="submit">ADD PRODUCT</button>
+          <button class="btn product-form__submit" type="submit">
+            <svg
+              class="icon"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 3C8.83203 3 3 8.83203 3 16C3 23.168 8.83203 29 16 29C23.168 29 29 23.168 29 16C29 8.83203 23.168 3 16 3ZM16 5C22.0859 5 27 9.91406 27 16C27 22.0859 22.0859 27 16 27C9.91406 27 5 22.0859 5 16C5 9.91406 9.91406 5 16 5ZM15 10V15H10V17H15V22H17V17H22V15H17V10H15Z"
+              />
+            </svg>
+            ADD PRODUCT
+          </button>
         </form>
-      </div>
+      </section>
     </template>
 
     <template id="shoppingList">
-      <div>
-        <h2>Your Products</h2>
-        <div id="listContainer"></div>
-        <p>Total number of products: <span id="totalPcs"></span></p>
-        <p>Total weight of products: <span id="totalKgs"></span></p>
-        <button id="exportPdfBtn">Export list as PDF</button>
-      </div>
+      <section class="section">
+        <h2 class="section__title">Your Products</h2>
+        <div class="list-container" id="listContainer"></div>
+        <div class="list-summary">
+          <p>Total number of products: <span class="list-summary__span" id="totalPcs"></span></p>
+          <p>Total weight of products: <span class="list-summary__span" id="totalKgs"></span></p>
+        </div>
+        <button class="btn export-to-pdf" id="exportPdfBtn">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="m451.7 99.72-71.4-71.44c-15.6-15.55-46.3-28.28-68.3-28.28h-240c-22 0-40 18-40 40v432c0 22 18 40 40 40h368c22 0 40-18 40-40v-304c0-22-12.7-52.7-28.3-68.28z"
+            />
+            <path
+              fill="#fff"
+              d="m448 472c0 4.3-3.7 8-8 8h-368c-4.34 0-8-3.7-8-8v-432c0-4.34 3.66-8 8-8h240c2.4 0 5.1.30 8 .85v127.2h127.1c.6 2.9.9 5.6.9 8v304z"
+            />
+            <path
+              d="m414.5 316.8c-2.1 1.3-8.1 2.1-11.9 2.1-12.4 0-27.6-5.7-49.1-14.9 8.3-.6 15.8-.9 22.6-.9 12.4 0 16 0 28.2 3.1 12.1 3 12.2 9.3 10.2 10.6zm-215.1 1.9c4.8-8.4 9.7-17.3 14.7-26.8 12.2-23.1 20-41.3 25.7-56.2 11.5 20.9 25.8 38.6 42.5 52.8 2.1 1.8 4.3 3.5 6.7 5.3-34.1 6.8-63.6 15-89.6 24.9zm39.8-218.9c6.8 0 10.7 17.06 11 33.16.3 16-3.4 27.2-8.1 35.6-3.9-12.4-5.7-31.8-5.7-44.5 0 0-.3-24.26 2.8-24.26zm-133.4 307.2c3.9-10.5 19.1-31.3 41.6-49.8 1.4-1.1 4.9-4.4 8.1-7.4-23.5 37.6-39.3 52.5-49.7 57.2zm315.2-112.3c-6.8-6.7-22-10.2-45-10.5-15.6-.2-34.3 1.2-54.1 3.9-8.8-5.1-17.9-10.6-25.1-17.3-19.2-18-35.2-42.9-45.2-70.3.6-2.6 1.2-4.8 1.7-7.1 0 0 10.8-61.5 7.9-82.3-.4-2.9-.6-3.7-1.4-5.9l-.9-2.5c-2.9-6.76-8.7-13.96-17.8-13.57l-5.3-.17h-.1c-10.1 0-18.4 5.17-20.5 12.84-6.6 24.3.2 60.5 12.5 107.4l-3.2 7.7c-8.8 21.4-19.8 43-29.5 62l-1.3 2.5c-10.2 20-19.5 37-27.9 51.4l-8.7 4.6c-.6.4-15.5 8.2-19 10.3-29.6 17.7-49.28 37.8-52.54 53.8-1.04 5-.26 11.5 5.01 14.6l8.4 4.2c3.63 1.8 7.53 2.7 11.43 2.7 21.1 0 45.6-26.2 79.3-85.1 39-12.7 83.4-23.3 122.3-29.1 29.6 16.7 66 28.3 89 28.3 4.1 0 7.6-.4 10.5-1.2 4.4-1.1 8.1-3.6 10.4-7.1 4.4-6.7 5.4-15.9 4.1-25.4-.3-2.8-2.6-6.3-5-8.7z"
+            />
+            <path
+              fill="#fff"
+              d="m429.1 122.3c1.6 1.6 3.1 3.5 4.6 5.7h-81.7v-81.73c2.2 1.52 4.1 3.08 5.7 4.64l71.4 71.39z"
+            />
+          </svg>
+          Export list as PDF
+        </button>
+      </section>
     </template>
 
     <template id="listInCategory">
-      <div>
-        <h3 id="categoryName"></h3>
+      <div class="category-list">
+        <h3 class="category-list__title" id="categoryName"></h3>
         <ul></ul>
       </div>
     </template>
 
     <template id="product">
-      <li draggable="true">
-        <span id="productName"></span>
-        <button id="editBtn">edit</button>
-        <button id="decreaseQty">-</button>
-        <span id="qty"></span>
-        <button id="increaseQty">+</button>
-        <span id="unit"></span>
-        <button id="removeBtn">remove</button>
+      <li class="product" draggable="true">
+        <span class="product__name" id="productName"></span>
+        <button class="btn product__btn product__btn--edit" id="editBtn">
+          <svg class="icon icon--small" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.8125 4.03125C22.7227 4.03125 21.6133 4.44922 20.7812 5.28125L11.5 14.5625L6.03125 16.6562L5.5 16.875L5.40625 17.4375L4 26.8438L3.8125 28.1875L5.15625 28L14.5625 26.5938L15.125 26.5L15.3438 25.9688L17.3125 20.7812L17.8125 20.3125L26.8125 11.3125C28.4258 9.69922 28.457 7.10938 26.9375 5.4375L26.8125 5.28125C25.9805 4.44922 24.9023 4.03125 23.8125 4.03125ZM23.8125 6C24.375 6 24.9375 6.25 25.4062 6.71875C26.3438 7.65625 26.3438 8.96875 25.4062 9.90625L20.375 14.9375L17.1875 11.75L22.2188 6.71875C22.6875 6.25 23.25 6 23.8125 6ZM15.75 13.1875L18.9375 16.375L17.125 18.1875L13.9375 15L15.75 13.1875ZM12.4062 16.3438H12.4375L15.6562 19.5625L13.6875 24.7188L7.84375 25.5625L10.5312 22.875C10.5859 22.8789 10.6328 22.9062 10.6875 22.9062C11.5703 22.9062 12.3125 22.1953 12.3125 21.3125C12.3125 20.4297 11.5703 19.6875 10.6875 19.6875C9.80469 19.6875 9.09375 20.4297 9.09375 21.3125C9.09375 21.3672 9.12109 21.4141 9.125 21.4688L6.4375 24.1562L7.28125 18.3125L12.4062 16.3438Z"
+            />
+          </svg>
+          edit
+        </button>
+        <span class="product__qty">
+          <button
+            class="btn product__qty__btn product__qty__btn--decrease"
+            id="decreaseQty"
+            aria-label="decrease quantity"
+          >
+            <svg
+              class="icon"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 3C8.83203 3 3 8.83203 3 16C3 23.168 8.83203 29 16 29C23.168 29 29 23.168 29 16C29 8.83203 23.168 3 16 3ZM16 5C22.0859 5 27 9.91406 27 16C27 22.0859 22.0859 27 16 27C9.91406 27 5 22.0859 5 16C5 9.91406 9.91406 5 16 5ZM15 15H10V17H15H17H22V15H17H15Z"
+              />
+            </svg>
+          </button>
+          <span class="product__qty__number" id="qty"></span>
+          <span class="product__qty__unit" id="unit"></span>
+          <button
+            class="btn product__qty__btn product__qty__btn--increase"
+            id="increaseQty"
+            aria-label="increase quantity"
+          >
+            <svg class="icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16 3C8.83203 3 3 8.83203 3 16C3 23.168 8.83203 29 16 29C23.168 29 29 23.168 29 16C29 8.83203 23.168 3 16 3ZM16 5C22.0859 5 27 9.91406 27 16C27 22.0859 22.0859 27 16 27C9.91406 27 5 22.0859 5 16C5 9.91406 9.91406 5 16 5ZM15 10V15H10V17H15V22H17V17H22V15H17V10H15Z"
+              />
+            </svg>
+          </button>
+        </span>
+        <button class="btn product__btn product__btn--remove" id="removeBtn">
+          <svg class="icon icon--small" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 4C14.4766 4 13.9414 4.18359 13.5625 4.5625C13.1836 4.94141 13 5.47656 13 6V7H7V9H8V25C8 26.6445 9.35547 28 11 28H23C24.6445 28 26 26.6445 26 25V9H27V7H21V6C21 5.47656 20.8164 4.94141 20.4375 4.5625C20.0586 4.18359 19.5234 4 19 4H15ZM15 6H19V7H15V6ZM10 9H24V25C24 25.5547 23.5547 26 23 26H11C10.4453 26 10 25.5547 10 25V9ZM12 12V23H14V12H12ZM16 12V23H18V12H16ZM20 12V23H22V12H20Z" />
+            </svg>
+
+          remove</button>
       </li>
     </template>
   </body>

@@ -1,6 +1,6 @@
 import BaseComponent from './BaseComponent';
 import state from '../state';
-import { saveButton } from './saveButton';
+import { insertInput, changeButton } from './productHelpers';
 
 export default class Product extends BaseComponent {
   constructor(templateId, parentId, newElementId, product) {
@@ -51,14 +51,11 @@ export default class Product extends BaseComponent {
 
   editName() {
     const input = document.createElement('input');
-    input.value = this.product.name;
-    this.element.replaceChild(input, this.nameSpan);
-    this.editBtn.innerHTML = saveButton;
     const save = () => {
       state.products.updateItem(this.product, 'name', input.value);
     };
-    input.addEventListener('change', save);
-    this.editBtn.addEventListener('click', save);
+    insertInput(input, this.product.name, this.element, this.nameSpan, save);
+    changeButton(this.editBtn, save);
   }
 
   removeProduct() {
@@ -67,7 +64,8 @@ export default class Product extends BaseComponent {
 
   decreaseQty() {
     const newQty = this.product.quantity - this.getStep();
-    state.products.updateItem(this.product, 'quantity', newQty);
+    const targetQty = newQty < 0 ? 0 : newQty;
+    state.products.updateItem(this.product, 'quantity', targetQty);
   }
 
   increaseQty() {

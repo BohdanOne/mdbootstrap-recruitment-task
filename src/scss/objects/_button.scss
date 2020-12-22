@@ -1,0 +1,10 @@
+.btn {
+  @include flex-center;
+  appearance: none;
+  margin: 1rem;
+  padding: .5rem 1rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: color $trans, background-color $trans;
+  flex-grow: 1;
+}

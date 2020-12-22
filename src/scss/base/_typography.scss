@@ -1,0 +1,50 @@
+body {
+  font-family: 'Bitter', serif;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-style: italic;
+  text-transform: capitalize;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+input {
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+button {
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}

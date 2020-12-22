@@ -1,0 +1,13 @@
+.category-list {
+  margin: 2rem 0 1rem;
+  color: $col-main;
+}
+
+.category-list__title {
+  border-bottom: 2px solid $col-accent-light;
+  margin-bottom: 0.5rem;
+}
+
+.dropzone {
+  background-color: lighten($col-gray, 20%);
+}

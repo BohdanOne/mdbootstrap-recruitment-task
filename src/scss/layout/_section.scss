@@ -1,0 +1,11 @@
+.section {
+  @include flex-center;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.section__title {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: lighten(desaturate($col-main, 40%), 20%);
+}
